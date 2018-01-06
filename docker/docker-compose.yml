@@ -1,0 +1,31 @@
+version: '2'
+services:
+  configurationservice:
+    image: 6d68/cryptocloud-confsrv:iteration1
+    ports:
+       - "8888:8888"
+  currencyservice:
+      image: 6d68/cryptocloud-currencysrv:iteration1
+      ports:
+        - "8080:8080"
+      environment:
+        PROFILE: "default"
+        CONFIGSERVER_URI: "http://configurationservice:8888"
+        CONFIGSERVER_PORT:   "8888"
+        DATABASESERVER_PORT: "27017"
+      links:
+        - configurationservice
+        - currencyservice-db
+      depends_on:
+        - configurationservice
+  currencyservice-db:
+    image: mongo:latest
+    container_name: "currencyservice-db"
+    ports:
+      - "27017:27017"
+    # environment:
+    #   - MONGO_DATA_DIR=/data/db
+    #   - MONGO_LOG_DIR=/dev/null
+    # volumes:
+    #   - ./data/db:/data/db
+    # command: mongod --smallfiles --logpath=/dev/null

@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      host: "currencyservice-db"
+      port: "27017"
