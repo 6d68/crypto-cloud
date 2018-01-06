@@ -1,7 +1,7 @@
 # Coinwatcher cloud
 Personal project putting together all the stuff i learned about Microservices in the last couple of months. Project will cover service configuration, discovery, resiliency, routing, eventing, tacing and finally deployment. As i'm personal interested in crypto currencies like Ethereum et al i decided to build a "crypto cloud" with a couple of services around the topic. The following figure gives you a rough overview:
 
-<img src="./crypto-cloud.svg">
+<img src="./cryptocloud.png">
 
 Services are build on top Spring Boot and Spring Cloud and Netflix OSS either using Java or Kotlin. 
 
