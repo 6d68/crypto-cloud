@@ -34,7 +34,7 @@ public class CurrencyServiceControllerTest {
     @MockBean
     private CurrencyService service;
 
-    @Test
+   @Test
     public void givenCurrencies_whenGetCurrencies_thenReturnJsonArray() throws Exception {
 
         Currency eth = new Currency("ETH", "ETH", "ETH", Date.from(Instant.now()), 1.1, 900.32, "EUR", 1.5, 2.1);

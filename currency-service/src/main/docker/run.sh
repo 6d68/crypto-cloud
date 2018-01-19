@@ -1,6 +1,12 @@
 #!/bin/sh
 
 echo "********************************************************"
+echo "Waiting for the Discovery Service to start on port $DISCOVERYSERVICE_PORT"
+echo "********************************************************"
+while ! `nc -z discovery-service  $DISCOVERYSERVICE_PORT`; do sleep 3; done
+echo "******* Discovery Service has started"
+
+echo "********************************************************"
 echo "Waiting for Configuration Service starting on port $CONFIGSERVER_PORT"
 echo "********************************************************"
 while ! `nc -z configurationservice $CONFIGSERVER_PORT `; do sleep 3; done
@@ -14,7 +20,9 @@ echo ">>>>>>>>>>>> Database Server has started"
 
 echo "********************************************************"
 echo "Starting Currency Service";
-echo "********************************************************"
-java -Dspring.cloud.config.uri=$CONFIGSERVER_URI -Dspring.profiles.active=$PROFILE -jar /usr/local/currencyservice/@project.build.finalName@.jar
+echo "**-Dspring.cloud.config.uri=CONFIGSERVER_URI                \******************************************************"
+java -Deureka.client.serviceUrl.defaultZone=$DISCOVERYSERVICE_URI    \
+     -Dspring.profiles.active=$PROFILE  -jar /usr/local/currencyservice/@project.build.finalName@.jar
+
 echo ">>>>>>>>>>>> Currency Service started!"
 

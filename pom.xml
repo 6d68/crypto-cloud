@@ -18,6 +18,7 @@
   <modules>
     <module>currency-service</module>
     <module>configuration-service</module>
+    <module>discovery-service</module>
   </modules>
   <build>
     <plugins>

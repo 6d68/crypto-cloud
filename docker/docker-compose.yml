@@ -4,6 +4,11 @@ services:
     image: 6d68/cryptocloud-confsrv:iteration1
     ports:
        - "8888:8888"
+    environment:
+        DISCOVERYSERVICE_URI: "http://discovery-service:8761/eureka/"
+        DISCOVERYSERVICE_PORT: 8761
+      depends_on:
+        - discovery-service
   currencyservice:
       image: 6d68/cryptocloud-currencysrv:iteration1
       ports:
@@ -13,11 +18,13 @@ services:
         CONFIGSERVER_URI: "http://configurationservice:8888"
         CONFIGSERVER_PORT:   "8888"
         DATABASESERVER_PORT: "27017"
+        DISCOVERYSERVICE_URI: "http://discovery-service:8761/eureka/"
+        DISCOVERYSERVICE_PORT: 8761
       links:
-        - configurationservice
         - currencyservice-db
       depends_on:
         - configurationservice
+        - discovery-service
   currencyservice-db:
     image: mongo:latest
     container_name: "currencyservice-db"
@@ -29,3 +36,7 @@ services:
     # volumes:
     #   - ./data/db:/data/db
     # command: mongod --smallfiles --logpath=/dev/null
+  discovery-service:
+   image: 6d68/cryptocloud-discoverysrv:iteration2
+   ports:
+       - "8761:8761"
