@@ -3,11 +3,11 @@ services:
   configurationservice:
     image: 6d68/cryptocloud-confsrv:iteration1
     ports:
-       - "8888:8888"
+      - "8888:8888"
     environment:
         DISCOVERYSERVICE_URI: "http://discovery-service:8761/eureka/"
         DISCOVERYSERVICE_PORT: 8761
-      depends_on:
+    depends_on:
         - discovery-service
   currencyservice:
       image: 6d68/cryptocloud-currencysrv:iteration1
