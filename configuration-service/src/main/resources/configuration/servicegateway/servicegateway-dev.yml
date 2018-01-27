@@ -1,0 +1,15 @@
+zuul:
+  prefix: /api
+  sensitiveHeaders: Cookie,Set-Cookie
+  routes:
+    currencyservice:
+      path: /currencyservice/**
+      serviceId: currencyservice
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2500

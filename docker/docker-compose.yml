@@ -40,3 +40,18 @@ services:
    image: 6d68/cryptocloud-discoverysrv:iteration2
    ports:
        - "8761:8761"
+  service-gateway:
+    image: 6d68/cryptocloud-servicegateway:iteration3
+    mem_limit: 1073741824
+    ports:
+      - "5555:5555"
+    links:
+      - "discovery-service"
+      - "configurationservice"
+    environment:
+      PROFILE: "default"
+      SERVER_PORT: "5555"
+      CONFIGSERVER_URI: "http://configurationservice:8888"
+      CONFIGSERVER_PORT: "8888"
+      DISCOVERYSERVICE_URI: "http://discovery-service:8761/eureka/"
+      DISCOVERYSERVICE_PORT: 8761

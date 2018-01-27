@@ -1,5 +1,5 @@
-# Coinwatcher cloud
-Personal project putting together all the stuff i learned about Microservices in the last couple of months. Project will cover service configuration, discovery, resiliency, routing, eventing, tacing and finally deployment. As i'm personal interested in crypto currencies like Ethereum et al i decided to build a "crypto cloud" with a couple of services around the topic. The following figure gives you a rough overview:
+# Crypto Cloud
+Personal project putting together all the stuff i learned about Microservices in the last couple of months. Project will cover service configuration, discovery, resiliency, routing, eventing, tacing and finally deployment. As i'm personal interested in crypto currencies like Ethereum et al i decided to build a "Crypto Cloud" with a couple of services around the topic. The following figure gives you a rough overview:
 
 <img src="./cryptocloud.png">
 
@@ -15,7 +15,24 @@ Services are build on top Spring Boot and Spring Cloud and Netflix OSS either us
 |Save currency      |POST|http://localhost:8000/currencies/            |<code>{<br>&nbsp;&nbsp;"id": "tether",<br>&nbsp;&nbsp;"name": "Tether",<br>&nbsp;&nbsp;"symbol": "USDT",<br>&nbsp;&nbsp;"lastUpdated": "1502012649",<br>&nbsp;&nbsp;"change1hInPercent": "-0.21",<br>&nbsp;&nbsp;"priceInPriceCurrency": "0.998024",<br>&nbsp;&nbsp;"priceCurrency": "USD",<br>&nbsp;&nbsp;"change7dInPercent": "-0.11",<br>&nbsp;&nbsp;"change24hInPercent": "-0.21"<br>}</code>|
 
 #### Configuration Service
-Service to manage Crypto-Cloud wide configuration for each service. At the moment only used by the currency service to configure the mongo database. To see the configuration start the cloud and navigate to the [Currency Service Default Configuration](http://localhost:8888/currencyservice/default). The technology behind this configuration service is [Spring Cloud Config](https://cloud.spring.io/spring-cloud-config/)
+Sidecar to manage Crypto-Cloud wide configuration for each service. E.g. used by the currency service to configure the mongodb. To see the configuration start the cloud and navigate to the [Currency Service Default Configuration](http://localhost:8888/currencyservice/default). The technology behind this configuration service is [Spring Cloud Config](https://cloud.spring.io/spring-cloud-config/)
+
+#### Service Gateway
+The Service Gateway acts as entry point to services. All requests first go through the Service Gateway. It then routes requests to the appropriate service. 
+
+E.g. the following configuration makes the Currency Service available under http://<Service Gateway>/api/currencyservice
+```yaml
+zuul:
+  prefix: /api
+  sensitiveHeaders: Cookie,Set-Cookie
+  routes:
+    currencyservice:
+      path: /currencyservice/**
+      serviceId: currencyservice
+```
+
+Service uses Zuul Proxy together with Spring. 
+
 
 # Running the cloud on your local machine
 

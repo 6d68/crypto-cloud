@@ -7,7 +7,7 @@ spring:
     config:
       server:
           native:
-            searchLocations: classpath:configuration/,classpath:configuration/currencyservice
+            searchLocations: classpath:configuration/,classpath:configuration/currencyservice,classpath:configuration/servicegateway
 eureka:
   instance:
     preferIpAddress: true
@@ -16,3 +16,4 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+
