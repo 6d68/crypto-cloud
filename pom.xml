@@ -4,11 +4,11 @@
 
   <groupId>com.cryptocloud</groupId>
   <version>0.0.1-SNAPSHOT</version>
-  <artifactId>coinwatcher-parent-pom</artifactId>
+  <artifactId>crypto-cloud-parent-pom</artifactId>
   <packaging>pom</packaging>
 
   <name>cryptocloud-parent-pom</name>
-  <description>Parent Pom for the coinwatcher project</description>
+  <description>Parent Pom for the crypto-cloud project</description>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
