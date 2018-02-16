@@ -5,22 +5,14 @@ Personal project putting together all the stuff i learned about Microservices in
 
 Services are build on top of Spring Boot, Spring Cloud and Netflix OSS using either Java or Kotlin. 
 
+**DISCLAIMER**: This project is not a perfect use case for a microservice architecture. It is only for learning the above-mentioned techniques.
+
 ### Services
-#### Currency Service
-
-|Action|Method|Url|Body|
-|---|---|---|---|
-|List all currencies|GET |http://localhost:8000/currencies             ||
-|Get currency by id |GET |http://localhost:8000/currencies/$currencyId$||
-|Save currencies      |POST|http://localhost:8000/currencies/            |<code>[{<br>&nbsp;&nbsp;"id": "tether",<br>&nbsp;&nbsp;"name": "Tether",<br>&nbsp;&nbsp;"symbol": "USDT",<br>&nbsp;&nbsp;"lastUpdated": "1502012649",<br>&nbsp;&nbsp;"change1hInPercent": "-0.21",<br>&nbsp;&nbsp;"priceInPriceCurrency": "0.998024",<br>&nbsp;&nbsp;"priceCurrency": "USD",<br>&nbsp;&nbsp;"change7dInPercent": "-0.11",<br>&nbsp;&nbsp;"change24hInPercent": "-0.21"<br>}]</code>|
-
-#### Configuration Service
-Sidecar to manage Crypto-Cloud wide configuration for each service. E.g. used by the currency service to configure the mongodb. To see the configuration start the cloud and navigate to the [Currency Service Default Configuration](http://localhost:8888/currencyservice/default). The technology behind this configuration service is [Spring Cloud Config](https://cloud.spring.io/spring-cloud-config/)
 
 #### Service Gateway
 The Service Gateway acts as entry point to services. All requests first go through the Service Gateway. It then routes requests to the appropriate service. 
 
-E.g. the following configuration makes the Currency Service available under http://<Service Gateway>/api/currencyservice
+E.g. the following configuration makes the Currency Service available under http://\<Service Gateway\>/api/currencyservice
 ```yaml
 zuul:
   prefix: /api
@@ -33,6 +25,21 @@ zuul:
 
 Service uses Zuul Proxy together with Spring. 
 
+#### Currency Service
+
+|Action|Method|Url|Body|
+|---|---|---|---|
+|List all currencies|GET |http://localhost:8000/currencies             ||
+|Get currency by id |GET |http://localhost:8000/currencies/$currencyId$||
+|Save currencies      |POST|http://localhost:8000/currencies/            |<code>[{<br>&nbsp;&nbsp;"id": "tether",<br>&nbsp;&nbsp;"name": "Tether",<br>&nbsp;&nbsp;"symbol": "USDT",<br>&nbsp;&nbsp;"lastUpdated": "1502012649",<br>&nbsp;&nbsp;"change1hInPercent": "-0.21",<br>&nbsp;&nbsp;"priceInPriceCurrency": "0.998024",<br>&nbsp;&nbsp;"priceCurrency": "USD",<br>&nbsp;&nbsp;"change7dInPercent": "-0.11",<br>&nbsp;&nbsp;"change24hInPercent": "-0.21"<br>}]</code>|
+
+
+### Side cars
+#### Configuration Service
+Sidecar to manage Crypto-Cloud wide configuration for each service. E.g. used by the currency service to configure the mongodb. To see the configuration start the cloud and navigate to the [Currency Service Default Configuration](http://localhost:8888/currencyservice/default). The technology behind this configuration service is [Spring Cloud Config](https://cloud.spring.io/spring-cloud-config/)
+
+#### Discovery Service
+Netflix open source Service Discovery Server [Eureka](https://netflix.github.io)
 
 # Running the cloud on your local machine
 
