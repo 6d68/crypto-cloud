@@ -3,7 +3,7 @@ Personal project putting together all the stuff i learned about Microservices in
 
 <img src="./cryptocloud.png">
 
-Services are build on top Spring Boot and Spring Cloud and Netflix OSS either using Java or Kotlin. 
+Services are build on top of Spring Boot, Spring Cloud and Netflix OSS using either Java or Kotlin. 
 
 ### Services
 #### Currency Service
@@ -12,7 +12,7 @@ Services are build on top Spring Boot and Spring Cloud and Netflix OSS either us
 |---|---|---|---|
 |List all currencies|GET |http://localhost:8000/currencies             ||
 |Get currency by id |GET |http://localhost:8000/currencies/$currencyId$||
-|Save currency      |POST|http://localhost:8000/currencies/            |<code>{<br>&nbsp;&nbsp;"id": "tether",<br>&nbsp;&nbsp;"name": "Tether",<br>&nbsp;&nbsp;"symbol": "USDT",<br>&nbsp;&nbsp;"lastUpdated": "1502012649",<br>&nbsp;&nbsp;"change1hInPercent": "-0.21",<br>&nbsp;&nbsp;"priceInPriceCurrency": "0.998024",<br>&nbsp;&nbsp;"priceCurrency": "USD",<br>&nbsp;&nbsp;"change7dInPercent": "-0.11",<br>&nbsp;&nbsp;"change24hInPercent": "-0.21"<br>}</code>|
+|Save currencies      |POST|http://localhost:8000/currencies/            |<code>[{<br>&nbsp;&nbsp;"id": "tether",<br>&nbsp;&nbsp;"name": "Tether",<br>&nbsp;&nbsp;"symbol": "USDT",<br>&nbsp;&nbsp;"lastUpdated": "1502012649",<br>&nbsp;&nbsp;"change1hInPercent": "-0.21",<br>&nbsp;&nbsp;"priceInPriceCurrency": "0.998024",<br>&nbsp;&nbsp;"priceCurrency": "USD",<br>&nbsp;&nbsp;"change7dInPercent": "-0.11",<br>&nbsp;&nbsp;"change24hInPercent": "-0.21"<br>}]</code>|
 
 #### Configuration Service
 Sidecar to manage Crypto-Cloud wide configuration for each service. E.g. used by the currency service to configure the mongodb. To see the configuration start the cloud and navigate to the [Currency Service Default Configuration](http://localhost:8888/currencyservice/default). The technology behind this configuration service is [Spring Cloud Config](https://cloud.spring.io/spring-cloud-config/)

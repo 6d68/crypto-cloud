@@ -33,8 +33,7 @@ public class CurrencyServiceController {
     }
 
     @PostMapping(value="")
-    public void saveCurrency(@RequestBody Currency currency) {
-
-        currencyService.saveCurrency(currency);
+    public void saveCurrencies(@RequestBody Iterable<Currency> currencies) {
+        currencyService.saveCurrencies(currencies);
     }
 }

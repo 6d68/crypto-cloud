@@ -13,10 +13,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 public class CurrencyServiceImplTest {
@@ -51,5 +54,17 @@ public class CurrencyServiceImplTest {
         Currency found = currencyService.getCurrency(name);
 
         assertThat(found.getName(), is(name));
+    }
+
+    @Test
+    public void whenSavingListofCurrencies_thenCurrenciesShouldBeSaved() {
+        Currency eth = new Currency("ETH", "ETH", "ETH", Date.from(Instant.now()), 1.1, 900.32, "EUR", 1.5, 2.1);
+        Currency btc = new Currency("BTC", "BTC", "BTC", Date.from(Instant.now()), 1.1, 900.32, "EUR", 1.5, 2.1);
+
+        Iterable<Currency> currencies = Arrays.asList(eth, btc);
+
+        currencyService.saveCurrencies(currencies);
+
+        verify(currencyRepository, times(1)).save(currencies);
     }
 }

@@ -11,4 +11,6 @@ public interface CurrencyService {
     Currency getCurrency(String currencyId);
 
     void saveCurrency(Currency currency);
+
+    void saveCurrencies(Iterable<Currency> currencies);
 }

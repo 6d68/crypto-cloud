@@ -30,4 +30,8 @@ public class CurrencyServiceImpl implements CurrencyService {
         currencyRepository.save(currency);
 
     }
+
+    public void saveCurrencies(Iterable<Currency> currencies){
+        currencyRepository.save(currencies);
+    }
 }
