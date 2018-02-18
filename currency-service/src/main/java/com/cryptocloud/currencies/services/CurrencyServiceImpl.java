@@ -1,7 +1,9 @@
 package com.cryptocloud.currencies.services;
 
+import com.cryptocloud.currencies.ItemNotFoundException;
 import com.cryptocloud.currencies.model.Currency;
 import com.cryptocloud.currencies.repositories.CurrencyRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,16 +24,14 @@ public class CurrencyServiceImpl implements CurrencyService {
         return currencyRepository.findAll();
     }
 
-    public Currency getCurrency(String currencyId) {
-        return currencyRepository.findOne(currencyId);
+    public Currency getCurrency(String currencyId) throws ItemNotFoundException {
+        Currency currency = currencyRepository.findOne(currencyId);
+        if(currency == null) throw new ItemNotFoundException(String.format("Item with id %s not found!", currencyId));
+        
+        return currency;
     }
 
-    public void saveCurrency(Currency currency){
-        currencyRepository.save(currency);
-
-    }
-
-    public void saveCurrencies(Iterable<Currency> currencies){
-        currencyRepository.save(currencies);
+    public List<Currency> saveCurrencies(Iterable<Currency> currencies){
+        return currencyRepository.save(currencies);
     }
 }

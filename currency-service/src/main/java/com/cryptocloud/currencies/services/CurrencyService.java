@@ -1,5 +1,6 @@
 package com.cryptocloud.currencies.services;
 
+import com.cryptocloud.currencies.ItemNotFoundException;
 import com.cryptocloud.currencies.model.Currency;
 import java.util.List;
 
@@ -8,9 +9,7 @@ public interface CurrencyService {
 
     List<Currency> getCurrencies();
 
-    Currency getCurrency(String currencyId);
+    Currency getCurrency(String currencyId) throws ItemNotFoundException;
 
-    void saveCurrency(Currency currency);
-
-    void saveCurrencies(Iterable<Currency> currencies);
+    List<Currency>  saveCurrencies(Iterable<Currency> currencies);
 }

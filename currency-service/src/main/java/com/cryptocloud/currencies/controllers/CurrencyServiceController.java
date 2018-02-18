@@ -1,8 +1,10 @@
 package com.cryptocloud.currencies.controllers;
 
+import com.cryptocloud.currencies.ItemNotFoundException;
 import com.cryptocloud.currencies.model.Currency;
 import com.cryptocloud.currencies.services.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,13 +29,14 @@ public class CurrencyServiceController {
     }
 
     @GetMapping(value="/{currencyId}")
-    public Currency getCurrency(@PathVariable("currencyId") String currencyId) {
+    public Currency getCurrency(@PathVariable("currencyId") String currencyId) throws ItemNotFoundException{
 
         return currencyService.getCurrency(currencyId);
     }
 
     @PostMapping(value="")
-    public void saveCurrencies(@RequestBody Iterable<Currency> currencies) {
-        currencyService.saveCurrencies(currencies);
+    public List<Currency> saveCurrencies(@RequestBody Iterable<Currency> currencies) {
+
+        return currencyService.saveCurrencies(currencies);
     }
 }

@@ -1,8 +1,8 @@
 package com.cryptocloud.currencies.services;
 
+import com.cryptocloud.currencies.ItemNotFoundException;
 import com.cryptocloud.currencies.model.Currency;
 import com.cryptocloud.currencies.repositories.CurrencyRepository;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Date;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -41,20 +40,25 @@ public class CurrencyServiceImplTest {
     @MockBean
     private CurrencyRepository currencyRepository;
 
-    @Before
-    public void setUp() {
-        Currency eth = new Currency("ETH", "ETH", "ETH", Date.from(Instant.now()), 1.1, 900.32, "EUR", 1.5, 2.1);
-
-        Mockito.when(currencyRepository.findOne(eth.getName())).thenReturn(eth);
-    }
-
     @Test
     public void whenValidId_thenCurrencyShouldBeFound() {
-        String name = "ETH";
-        Currency found = currencyService.getCurrency(name);
 
-        assertThat(found.getName(), is(name));
+        Currency eth = new Currency("ETH", "ETH", "ETH", Date.from(Instant.now()), 1.1, 900.32, "EUR", 1.5, 2.1);
+        Mockito.when(currencyRepository.findOne(eth.getName())).thenReturn(eth);
+        
+        Currency found = currencyService.getCurrency(eth.getName());
+
+        assertThat(found.getName(), is(eth.getName()));
     }
+
+    @Test(expected = ItemNotFoundException.class)
+    public void whenInvalidId_thenItemNotFoundExceptionShouldBeThrown() {
+        String invaidId = "invalid";
+
+        Mockito.when(currencyRepository.findOne(invaidId)).thenReturn(null);
+        currencyService.getCurrency(invaidId);
+    }
+
 
     @Test
     public void whenSavingListofCurrencies_thenCurrenciesShouldBeSaved() {
