@@ -30,4 +30,8 @@ class CurrencyServiceError {
 	public HttpStatus getStatus() {
 		return this.status;
 	}
+
+	public String getMessage() {
+		return message;
+	}
 }

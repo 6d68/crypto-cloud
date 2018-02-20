@@ -4,7 +4,6 @@ import com.cryptocloud.currencies.ItemNotFoundException;
 import com.cryptocloud.currencies.model.Currency;
 import com.cryptocloud.currencies.services.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
