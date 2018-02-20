@@ -1,0 +1,218 @@
+{
+	"info": {
+		"name": "Crypto-Cloud",
+		"_postman_id": "19f1129e-5837-8e27-9e4b-8d8413bef769",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Currency Service",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:5555/api/currencyservice/currencies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5555/api/currencyservice/currencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5555",
+							"path": [
+								"api",
+								"currencyservice",
+								"currencies"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/currencies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": \"BTC\",\n        \"name\": \"BTC\",\n        \"symbol\": \"BTC\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/currencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"currencies"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/currencies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"bitcoin\",\n        \"name\": \"Bitcoin\",\n        \"symbol\": \"BTC\",\n        \"lastUpdated\": 1502012649,\n        \"change1hInPercent\": -0.21,\n        \"priceInPriceCurrency\": 0.998024,\n        \"priceCurrency\": \"USD\",\n        \"change7dInPercent\": -0.11,\n        \"change24hInPercent\": -0.21\n    },\n    {\n        \"id\": \"ethereum-classic\",\n        \"name\": \"Ethereum Classig\",\n        \"symbol\": \"ETC\",\n        \"lastUpdated\": 1502012649,\n        \"change1hInPercent\": -0.21,\n        \"priceInPriceCurrency\": 998.024,\n        \"priceCurrency\": \"USD\",\n        \"change7dInPercent\": -0.11,\n        \"change24hInPercent\": -0.21\n    }\n]"
+						},
+						"url": {
+							"raw": "http://localhost:8080/currencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"currencies"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/currencies/ethereum",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": \"BTC\",\n        \"name\": \"BTC\",\n        \"symbol\": \"BTC\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/currencies/ethereum",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"currencies",
+								"ethereum"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Configuration Service",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8888/currencyservice/default",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": \"BTC\",\n        \"name\": \"BTC\",\n        \"symbol\": \"BTC\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8888/currencyservice/default",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"currencyservice",
+								"default"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Service Gateway",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:5555/routes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5555/routes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5555",
+							"path": [
+								"routes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Discovery Service",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8761/eureka/apps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8761/eureka/apps",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8761",
+							"path": [
+								"eureka",
+								"apps"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
