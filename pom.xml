@@ -7,13 +7,13 @@
   <artifactId>crypto-cloud-parent-pom</artifactId>
   <packaging>pom</packaging>
 
-  <name>cryptocloud-parent-pom</name>
-  <description>Parent Pom for the crypto-cloud project</description>
+  <name>Crypto Cloud (Parent POM)</name>
+  <description>Crypto Cloud</description>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.8.RELEASE</version>
+    <version>1.5.10.RELEASE</version>
   </parent>
   <modules>
     <module>currency-service</module>
