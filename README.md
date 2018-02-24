@@ -33,6 +33,8 @@ Service uses Zuul Proxy together with Spring.
 |Get currency by id |GET |http://localhost:8000/currencies/$currencyId$||
 |Save currencies      |POST|http://localhost:8000/currencies/            |<code>[{<br>&nbsp;&nbsp;"id": "tether",<br>&nbsp;&nbsp;"name": "Tether",<br>&nbsp;&nbsp;"symbol": "USDT",<br>&nbsp;&nbsp;"lastUpdated": "1502012649",<br>&nbsp;&nbsp;"change1hInPercent": "-0.21",<br>&nbsp;&nbsp;"priceInPriceCurrency": "0.998024",<br>&nbsp;&nbsp;"priceCurrency": "USD",<br>&nbsp;&nbsp;"change7dInPercent": "-0.11",<br>&nbsp;&nbsp;"change24hInPercent": "-0.21"<br>}]</code>|
 
+#### Rates Collector
+Microservice responsible for collecting up-to-date currency rates from an external data source and pushing those rates into the Currency Service database. The synchronization takes place every three minutes.
 
 ### Side cars
 #### Configuration Service

@@ -16,7 +16,7 @@ services:
       environment:
         PROFILE: "default"
         CONFIGSERVER_URI: "http://configurationservice:8888"
-        CONFIGSERVER_PORT:   "8888"
+        CONFIGSERVER_PORT: "8888"
         DATABASESERVER_PORT: "27017"
         DISCOVERYSERVICE_URI: "http://discovery-service:8761/eureka/"
         DISCOVERYSERVICE_PORT: 8761
@@ -25,6 +25,21 @@ services:
       depends_on:
         - configurationservice
         - discovery-service
+  ratecollector:
+      image: 6d68/cryptocloud-ratescollector:iteration1
+      ports:
+        - "8081:8081"
+      environment:
+        PROFILE: "default"
+        CONFIGSERVER_URI: "http://configurationservice:8888"
+        CONFIGSERVER_PORT: "8888"
+        DISCOVERYSERVICE_URI: "http://discovery-service:8761/eureka/"
+        DISCOVERYSERVICE_PORT: 8761
+        CURRENCYSERVICE_URI: "http://currencyservice/"
+        CURRENCYSERVICE_PORT: "8080"
+      depends_on:
+        - discovery-service
+        - currencyservice
   currencyservice-db:
     image: mongo:latest
     container_name: "currencyservice-db"
@@ -40,6 +55,7 @@ services:
    image: 6d68/cryptocloud-discoverysrv:iteration2
    ports:
        - "8761:8761"
+
   service-gateway:
     image: 6d68/cryptocloud-servicegateway:iteration3
     mem_limit: 1073741824

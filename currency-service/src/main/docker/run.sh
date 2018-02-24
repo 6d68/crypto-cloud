@@ -20,9 +20,11 @@ echo ">>>>>>>>>>>> Database Server has started"
 
 echo "********************************************************"
 echo "Starting Currency Service";
-java -Deureka.client.serviceUrl.defaultZone=$DISCOVERYSERVICE_URI           \
-     -Dspring.cloud.config.uri=$CONFIGSERVER_URI                            \
-     -Dspring.profiles.active=$PROFILE  -jar /usr/local/currencyservice/@project.build.finalName@.jar
 
+java -Djava.security.egd=file:/dev/./urandom                             \
+     -Deureka.client.serviceUrl.defaultZone=$DISCOVERYSERVICE_URI        \
+     -Dspring.cloud.config.uri=$CONFIGSERVER_URI                         \
+     -Dspring.profiles.active=$PROFILE                                   \
+     -jar /usr/local/currencyservice/@project.build.finalName@.jar
 echo ">>>>>>>>>>>> Currency Service started!"
 

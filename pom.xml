@@ -20,6 +20,7 @@
     <module>configuration-service</module>
     <module>discovery-service</module>
     <module>service-gateway</module>
+    <module>ratescollector</module>
   </modules>
   <build>
     <plugins>
