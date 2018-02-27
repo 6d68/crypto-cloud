@@ -53,10 +53,10 @@ public class CurrencyServiceImplTest {
 
     @Test(expected = ItemNotFoundException.class)
     public void whenInvalidId_thenItemNotFoundExceptionShouldBeThrown() {
-        String invaidId = "invalid";
+        String invalidId = "invalid";
 
-        Mockito.when(currencyRepository.findOne(invaidId)).thenReturn(null);
-        currencyService.getCurrency(invaidId);
+        Mockito.when(currencyRepository.findOne(invalidId)).thenReturn(null);
+        currencyService.getCurrency(invalidId);
     }
 
 

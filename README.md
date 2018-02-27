@@ -9,10 +9,10 @@ Services are build on top of Spring Boot, Spring Cloud and Netflix OSS using eit
 
 ### Services
 
-#### Service Gateway
-The Service Gateway acts as entry point to services. All requests first go through the Service Gateway. It then routes requests to the appropriate service. 
+#### API Gateway
+The API Gateway acts as entry point to services. All requests first go through the API Gateway. It then routes requests to the appropriate service. 
 
-E.g. the following configuration makes the Currency Service available under http://\<Service Gateway\>/api/currencyservice
+E.g. the following configuration makes the Currency Service available under http://{{api-gateway}}/api/currencyservice
 ```yaml
 zuul:
   prefix: /api
@@ -26,12 +26,7 @@ zuul:
 Service uses Zuul Proxy together with Spring. 
 
 #### Currency Service
-
-|Action|Method|Url|Body|
-|---|---|---|---|
-|List all currencies|GET |http://localhost:8000/currencies             ||
-|Get currency by id |GET |http://localhost:8000/currencies/$currencyId$||
-|Save currencies      |POST|http://localhost:8000/currencies/            |<code>[{<br>&nbsp;&nbsp;"id": "tether",<br>&nbsp;&nbsp;"name": "Tether",<br>&nbsp;&nbsp;"symbol": "USDT",<br>&nbsp;&nbsp;"lastUpdated": "1502012649",<br>&nbsp;&nbsp;"change1hInPercent": "-0.21",<br>&nbsp;&nbsp;"priceInPriceCurrency": "0.998024",<br>&nbsp;&nbsp;"priceCurrency": "USD",<br>&nbsp;&nbsp;"change7dInPercent": "-0.11",<br>&nbsp;&nbsp;"change24hInPercent": "-0.21"<br>}]</code>|
+Simple REST API with the possibility to list available currencies by page or id as well as saving currencies. See [Postman Request Collection](./Crypto-Cloud.postman_collection.json) for example requests. See [Postman Docs](https://www.getpostman.com/docs/) to get more information about Postman.
 
 #### Rates Collector
 Microservice responsible for collecting up-to-date currency rates from an external data source and pushing those rates into the Currency Service database. The synchronization takes place every three minutes.

@@ -5,6 +5,8 @@ import com.cryptocloud.currencies.model.Currency;
 import com.cryptocloud.currencies.repositories.CurrencyRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +22,9 @@ public class CurrencyServiceImpl implements CurrencyService {
         this.currencyRepository = currencyRepository;
     }
 
-    public List<Currency> getCurrencies() {
-        return currencyRepository.findAll();
+    @Override
+    public Page<Currency> pagedCurrencies(Pageable pageable) {
+        return currencyRepository.findAll(pageable);
     }
 
     public Currency getCurrency(String currencyId) throws ItemNotFoundException {

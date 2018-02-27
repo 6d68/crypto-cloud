@@ -11,30 +11,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:5555/api/currencyservice/currencies",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:5555/api/currencyservice/currencies",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5555",
-							"path": [
-								"api",
-								"currencyservice",
-								"currencies"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:8080/currencies",
+					"name": "http://{{currency-service}}/currencies",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -48,12 +25,11 @@
 							"raw": " {\n        \"id\": \"BTC\",\n        \"name\": \"BTC\",\n        \"symbol\": \"BTC\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/currencies",
+							"raw": "http://{{currency-service}}/currencies",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{currency-service}}"
 							],
-							"port": "8080",
 							"path": [
 								"currencies"
 							]
@@ -63,7 +39,76 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/currencies",
+					"name": "http://{{currency-service}}/currencies?page=0&size=5",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": \"BTC\",\n        \"name\": \"BTC\",\n        \"symbol\": \"BTC\"\n}"
+						},
+						"url": {
+							"raw": "http://{{currency-service}}/currencies?page=0&size=5",
+							"protocol": "http",
+							"host": [
+								"{{currency-service}}"
+							],
+							"path": [
+								"currencies"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "size",
+									"value": "5",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://{{currency-service}}/currencies/ethereum",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"id\": \"BTC\",\n        \"name\": \"BTC\",\n        \"symbol\": \"BTC\"\n}"
+						},
+						"url": {
+							"raw": "http://{{currency-service}}/currencies/ethereum",
+							"protocol": "http",
+							"host": [
+								"{{currency-service}}"
+							],
+							"path": [
+								"currencies",
+								"ethereum"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://{{currency-service}}/currencies",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -77,44 +122,13 @@
 							"raw": "[\n    {\n        \"id\": \"bitcoin\",\n        \"name\": \"Bitcoin\",\n        \"symbol\": \"BTC\",\n        \"lastUpdated\": 1502012649,\n        \"change1hInPercent\": -0.21,\n        \"priceInPriceCurrency\": 0.998024,\n        \"priceCurrency\": \"USD\",\n        \"change7dInPercent\": -0.11,\n        \"change24hInPercent\": -0.21\n    },\n    {\n        \"id\": \"ethereum-classic\",\n        \"name\": \"Ethereum Classig\",\n        \"symbol\": \"ETC\",\n        \"lastUpdated\": 1502012649,\n        \"change1hInPercent\": -0.21,\n        \"priceInPriceCurrency\": 998.024,\n        \"priceCurrency\": \"USD\",\n        \"change7dInPercent\": -0.11,\n        \"change24hInPercent\": -0.21\n    }\n]"
 						},
 						"url": {
-							"raw": "http://localhost:8080/currencies",
+							"raw": "http://{{currency-service}}/currencies",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{currency-service}}"
 							],
-							"port": "8080",
 							"path": [
 								"currencies"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:8080/currencies/ethereum",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": " {\n        \"id\": \"BTC\",\n        \"name\": \"BTC\",\n        \"symbol\": \"BTC\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/currencies/ethereum",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"currencies",
-								"ethereum"
 							]
 						},
 						"description": ""
@@ -128,7 +142,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8888/currencyservice/default",
+					"name": "http://{{configuration-service}}/currencyservice/default",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -142,12 +156,11 @@
 							"raw": " {\n        \"id\": \"BTC\",\n        \"name\": \"BTC\",\n        \"symbol\": \"BTC\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8888/currencyservice/default",
+							"raw": "http://{{configuration-service}}/currencyservice/default",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{configuration-service}}"
 							],
-							"port": "8888",
 							"path": [
 								"currencyservice",
 								"default"
@@ -164,18 +177,39 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:5555/routes",
+					"name": "http://{{api-gateway}}/api/currencyservice/currencies",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:5555/routes",
+							"raw": "http://{{api-gateway}}/api/currencyservice/currencies",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{api-gateway}}"
 							],
-							"port": "5555",
+							"path": [
+								"api",
+								"currencyservice",
+								"currencies"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://{{api-gateway}}/routes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{api-gateway}}/routes",
+							"protocol": "http",
+							"host": [
+								"{{api-gateway}}"
+							],
 							"path": [
 								"routes"
 							]
@@ -191,18 +225,17 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8761/eureka/apps",
+					"name": "http://{{discovery-service}}/eureka/apps",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8761/eureka/apps",
+							"raw": "http://{{discovery-service}}/eureka/apps",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{discovery-service}}"
 							],
-							"port": "8761",
 							"path": [
 								"eureka",
 								"apps"
@@ -213,6 +246,54 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5a2a0945-d8b5-4048-855c-40b804ff712e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "150dd684-c6f4-4c09-96ec-e346fe444267",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "20280546-9262-4d72-9d88-bdca0be796a2",
+			"key": "currency-service",
+			"value": "localhost:8080",
+			"type": "text"
+		},
+		{
+			"id": "d5b76a4f-a642-4ef1-8219-14a18c186493",
+			"key": "api-gateway",
+			"value": "localhost:5555",
+			"type": "text"
+		},
+		{
+			"id": "1387d86e-402b-47ee-bdf3-4de85d961a92",
+			"key": "configuration-service",
+			"value": "localhost:8888",
+			"type": "text"
+		},
+		{
+			"id": "b8a3b5f2-47da-42bf-a74f-66b4399b7f47",
+			"key": "discovery-service",
+			"value": "localhost:8761",
+			"type": "text"
 		}
 	]
 }

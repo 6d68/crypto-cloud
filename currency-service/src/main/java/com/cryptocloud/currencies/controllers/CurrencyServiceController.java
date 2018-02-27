@@ -4,6 +4,8 @@ import com.cryptocloud.currencies.ItemNotFoundException;
 import com.cryptocloud.currencies.model.Currency;
 import com.cryptocloud.currencies.services.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,11 +22,9 @@ public class CurrencyServiceController {
         this.currencyService = currencyService;
     }
 
-
     @GetMapping(value="")
-    public List<Currency> getCurrencies() {
-
-        return currencyService.getCurrencies();
+    Page<Currency> getCurrencies(Pageable pageable){
+        return currencyService.pagedCurrencies(pageable);
     }
 
     @GetMapping(value="/{currencyId}")
