@@ -24,7 +24,7 @@
 		<kotlin.version>1.2.21</kotlin.version>
 		<spring-cloud.version>Edgware.SR2</spring-cloud.version>
 		<docker.image.name>6d68/cryptocloud-ratescollector</docker.image.name>
-		<docker.image.tag>iteration1</docker.image.tag>
+		<docker.image.tag>latest</docker.image.tag>
 	</properties>
 
 	<dependencies>

@@ -41,7 +41,7 @@
     <java.version>1.8</java.version>
 	<spring-cloud.version>Edgware.SR2</spring-cloud.version>
     <docker.image.name>6d68/cryptocloud-discoverysrv</docker.image.name>
-    <docker.image.tag>iteration2</docker.image.tag>
+    <docker.image.tag>latest</docker.image.tag>
   </properties>
 
   <build>

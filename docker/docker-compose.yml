@@ -1,7 +1,7 @@
-version: '2'
+version: '3'
 services:
   configurationservice:
-    image: 6d68/cryptocloud-confsrv:iteration1
+    image: 6d68/cryptocloud-confsrv:latest
     ports:
       - "8888:8888"
     environment:
@@ -10,7 +10,7 @@ services:
     depends_on:
         - discovery-service
   currencyservice:
-      image: 6d68/cryptocloud-currencysrv:iteration1
+      image: 6d68/cryptocloud-currencysrv:latest
       ports:
         - "8080:8080"
       environment:
@@ -26,7 +26,7 @@ services:
         - configurationservice
         - discovery-service
   ratecollector:
-      image: 6d68/cryptocloud-ratescollector:iteration1
+      image: 6d68/cryptocloud-ratescollector:latest
       ports:
         - "8081:8081"
       environment:
@@ -52,13 +52,11 @@ services:
     #   - ./data/db:/data/db
     # command: mongod --smallfiles --logpath=/dev/null
   discovery-service:
-   image: 6d68/cryptocloud-discoverysrv:iteration2
+   image: 6d68/cryptocloud-discoverysrv:latest
    ports:
        - "8761:8761"
-
   service-gateway:
-    image: 6d68/cryptocloud-servicegateway:iteration3
-    mem_limit: 1073741824
+    image: 6d68/cryptocloud-servicegateway:latest
     ports:
       - "5555:5555"
     links:

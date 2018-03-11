@@ -59,7 +59,7 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Edgware.SR2</spring-cloud.version>
         <docker.image.name>6d68/cryptocloud-servicegateway</docker.image.name>
-        <docker.image.tag>iteration3</docker.image.tag>
+        <docker.image.tag>latest</docker.image.tag>
     </properties>
 
     <build>
