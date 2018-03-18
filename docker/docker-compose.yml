@@ -45,12 +45,6 @@ services:
     container_name: "currencyservice-db"
     ports:
       - "27017:27017"
-    # environment:
-    #   - MONGO_DATA_DIR=/data/db
-    #   - MONGO_LOG_DIR=/dev/null
-    # volumes:
-    #   - ./data/db:/data/db
-    # command: mongod --smallfiles --logpath=/dev/null
   discovery-service:
    image: 6d68/cryptocloud-discoverysrv:latest
    ports:
@@ -69,3 +63,11 @@ services:
       CONFIGSERVER_PORT: "8888"
       DISCOVERYSERVICE_URI: "http://discovery-service:8761/eureka/"
       DISCOVERYSERVICE_PORT: 8761
+  webapp:
+    image: 6d68/webapp:latest
+    ports:
+      - "8282:8282"
+    links:
+      - "service-gateway"
+    environment:
+      APP_API_GATEWAY: "http://service-gateway:5555/api/currencyservice"

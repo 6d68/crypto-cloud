@@ -23,5 +23,4 @@
 
 docker/common/data
 .vscode
-crypto-cloud-app/node_modules
-crypto-cloud-app
+
