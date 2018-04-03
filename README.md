@@ -5,7 +5,7 @@ Personal project putting together all the stuff i learned about Microservices in
 
 Services are build on top of Spring Boot, Spring Cloud and Netflix OSS using either Java or Kotlin. 
 
-**DISCLAIMER**: This project is not a perfect use case for a microservice architecture. It is only for learning the above-mentioned techniques.
+**DISCLAIMER**: This project is not a perfect use case for a microservice architecture. It is only for learning the above-mentioned techniques what's also the reason for putting all the source code in a single repository. For a real world project I recommend to set up each microservice with its own repository and with its own build processes.
 
 ### Services
 
@@ -43,7 +43,7 @@ Thanks to cjdowner for providing a set of [icons](https://github.com/cjdowner/cr
 3.  [Node.js](https://nodejs.org/en/)
 
 ## Building & Running the cloud on your local machine
-First you have to build the code as a docker image. Therefor open a terminal, navigate to source code root directory and run the following command:
+First you have to build the code as a docker image. Therefore open a terminal, navigate to source code root directory and run the following command:
 
 ```console
    ./build.sh
