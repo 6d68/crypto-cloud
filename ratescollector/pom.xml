@@ -24,7 +24,7 @@
 		<kotlin.version>1.2.21</kotlin.version>
 		<spring-cloud.version>Edgware.SR2</spring-cloud.version>
 		<docker.image.name>6d68/cryptocloud-ratescollector</docker.image.name>
-		<docker.image.tag>latest</docker.image.tag>
+		<docker.image.tag>${env.BUILD_ID}</docker.image.tag>
 	</properties>
 
 	<dependencies>
@@ -32,18 +32,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency> -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-		</dependency> -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
@@ -52,10 +44,6 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-ribbon</artifactId>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.springframework.retry</groupId>
-			<artifactId>spring-retry</artifactId>
-		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -171,10 +159,10 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${basedir}/target/dockerfile</outputDirectory>
+							<outputDirectory>${basedir}/target/docker</outputDirectory>
 							<resources>
 								<resource>
-									<directory>src/main/docker</directory>
+									<directory>${basedir}/docker</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>
@@ -188,7 +176,7 @@
 				<version>0.4.10</version>
 				<configuration>
 					<imageName>${docker.image.name}:${docker.image.tag}</imageName>
-					<dockerDirectory>${basedir}/target/dockerfile</dockerDirectory>
+					<dockerDirectory>${basedir}/target/docker</dockerDirectory>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>

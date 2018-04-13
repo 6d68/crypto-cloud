@@ -1,6 +1,6 @@
 spring:
   application:
-    name: servicegateway
+    name: api-gateway
   profiles:
     active:
       default

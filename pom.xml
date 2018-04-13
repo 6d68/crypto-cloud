@@ -19,8 +19,9 @@
     <module>currency-service</module>
     <module>configuration-service</module>
     <module>discovery-service</module>
-    <module>service-gateway</module>
+    <module>api-gateway</module>
     <module>ratescollector</module>
+    <module>crypto-cloud-app</module>
   </modules>
   <build>
     <plugins>

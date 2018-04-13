@@ -10,7 +10,7 @@ COPY build /usr/share/nginx/html
 COPY nginx-site.conf /etc/nginx/conf.d/site.conf.template
 
 # add api gateway environment variable with default value
-ENV APP_API_GATEWAY="http://172.19.0.1:5555/api/currencyservice" 
+ENV APP_API_GATEWAY="http://172.19.0.1:5555" 
  
 COPY run.sh /usr/sbin/run
 

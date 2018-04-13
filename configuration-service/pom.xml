@@ -28,10 +28,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -51,30 +51,27 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<start-class>com.cryptocloud.configuration.ConfigurationApplication</start-class>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>Edgware.SR2</spring-cloud.version> 
+		<spring-cloud.version>Edgware.SR2</spring-cloud.version>
 		<docker.image.name>6d68/cryptocloud-confsrv</docker.image.name>
-		<docker.image.tag>latest</docker.image.tag>
+		<docker.image.tag>${env.BUILD_ID}</docker.image.tag>
 	</properties>
 
 	<build>
 		<plugins>
-			<!-- We use the Resources plugin to filer Dockerfile and run.sh, it inserts actual JAR filename -->
-			<!-- The final Dockerfile will be created in target/dockerfile/Dockerfile -->
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
 					<execution>
 						<id>copy-resources</id>
-						<!-- here the phase you need -->
 						<phase>validate</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${basedir}/target/dockerfile</outputDirectory>
+							<outputDirectory>${basedir}/target/docker</outputDirectory>
 							<resources>
 								<resource>
-									<directory>src/main/docker</directory>
+									<directory>${basedir}/docker</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>
@@ -88,7 +85,7 @@
 				<version>0.4.10</version>
 				<configuration>
 					<imageName>${docker.image.name}:${docker.image.tag}</imageName>
-					<dockerDirectory>${basedir}/target/dockerfile</dockerDirectory>
+					<dockerDirectory>${basedir}/target/docker</dockerDirectory>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>
@@ -104,6 +101,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>

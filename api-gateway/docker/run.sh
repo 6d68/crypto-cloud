@@ -14,10 +14,10 @@ echo ">>>>>>>>>>>> Configuration Service has started"
 
 #!/bin/sh
 echo "********************************************************"
-echo "Starting Service Gateway"
+echo "Starting API Gateway"
 echo "********************************************************"
 java -Deureka.client.serviceUrl.defaultZone=$DISCOVERYSERVICE_URI           \
      -Dspring.cloud.config.uri=$CONFIGSERVER_URI                            \
-     -Dspring.profiles.active=$PROFILE  -jar /usr/local/servicegateway/@project.build.finalName@.jar
+     -Dspring.profiles.active=$PROFILE  -jar /usr/local/apigateway/@project.build.finalName@.jar
 
-echo ">>>>>>>>>>>> Service Gateway started!"
+echo ">>>>>>>>>>>> API Gateway started!"

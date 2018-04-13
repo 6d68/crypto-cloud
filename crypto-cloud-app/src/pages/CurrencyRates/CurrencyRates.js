@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Dimmer, Grid, Loader, Segment, Pagination } from 'semantic-ui-react'
 import CryptoIcon from '../../components/CryptoIcon/CryptoIcon'
 
-const API = '/api/currencies';
+const API = 'api/currencyservice/currencies';
 const PAGESIZE = 10;
 
 export default class Home extends Component {

@@ -7,7 +7,7 @@ spring:
     config:
       server:
           native:
-            searchLocations: classpath:configuration/,classpath:configuration/currencyservice,classpath:configuration/servicegateway
+            searchLocations: classpath:configuration/,classpath:configuration/currencyservice,classpath:configuration/api-gateway
 eureka:
   instance:
     preferIpAddress: true

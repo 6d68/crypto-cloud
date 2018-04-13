@@ -85,7 +85,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>com.cryptocloud.currencies.Application</start-class>
         <docker.image.name>6d68/cryptocloud-currencysrv</docker.image.name>
-        <docker.image.tag>latest</docker.image.tag>
+        <docker.image.tag>${env.BUILD_ID}</docker.image.tag>
     </properties>
 
     <build>
@@ -100,10 +100,10 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/target/dockerfile</outputDirectory>
+                            <outputDirectory>${basedir}/target/docker</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>src/main/docker</directory>
+                                    <directory>${basedir}/docker</directory>
                                     <filtering>true</filtering>
                                 </resource>
                             </resources>
@@ -117,7 +117,7 @@
                 <version>0.4.10</version>
                 <configuration>
                     <imageName>${docker.image.name}:${docker.image.tag}</imageName>
-                    <dockerDirectory>${basedir}/target/dockerfile</dockerDirectory>
+                    <dockerDirectory>${basedir}/target/docker</dockerDirectory>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
