@@ -1,4 +1,4 @@
-# Crypto Cloud
+# Crypto Cloud [![Build Status](https://travis-ci.org/6d68/crypto-cloud.svg?branch=master)](https://travis-ci.org/6d68/crypto-cloud)
 Personal project putting together all the stuff i learned about Microservices in the last couple of months. Project will cover service configuration, discovery, resiliency, routing, eventing, tracing and finally deployment. As i'm personal interested in crypto currencies like Ethereum et al i decided to build a "Crypto Cloud" with a couple of services around the topic. The following figure gives you a rough overview:
 
 <img src="./services-diagram.png">
