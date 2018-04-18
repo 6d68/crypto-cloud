@@ -25,7 +25,7 @@
                         <goals>
                             <goal>exec</goal>
                         </goals>
-                        <phase>pre-clean</phase>
+                        <phase>initialize</phase>
                         <configuration>
                             <executable>npm</executable>
                             <arguments>
