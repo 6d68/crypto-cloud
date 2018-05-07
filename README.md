@@ -58,12 +58,7 @@ Once the build is finished you can start the cloud with the following docker-com
 
 To inspect the services use the [Postman Request Collection](./Crypto-Cloud.postman_collection.json) as described above. You may have to adjust the variables to make requests.
 
-To open the web application you have to find out the IP address of the container hosting the web application. The following command will help you:
-
-```console
-    docker inspect $(docker ps | grep 6d68/cryptocloud-app | awk '{print $1}') | grep IPAddress
-```
-Navigating to the resulting IP address in the web browser will bring up something like this:
+The web application is bound to port 80. Just open the browser of your choice, navigate to [localhost:80](http://localhost:80) and voila:
 
   <img src="./CryptoCloud-App.png" style="width: 600px;">
 

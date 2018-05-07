@@ -1,21 +1,24 @@
 #!/bin/sh
+getPort() {
+    echo $1 | cut -d : -f 3 | xargs basename
+}
 
 echo "********************************************************"
-echo "Waiting for the Discovery Service to start on port $DISCOVERYSERVICE_PORT"
+echo "Waiting for the Discovery Service to start on port $(getPort $DISCOVERYSERVICE_PORT)"
 echo "********************************************************"
-while ! `nc -z discovery-service  $DISCOVERYSERVICE_PORT`; do sleep 3; done
+while ! `nc -z discovery-service  $(getPort $DISCOVERYSERVICE_PORT)`; do sleep 3; done
 echo "******* Discovery Service has started"
 
 echo "********************************************************"
-echo "Waiting for Configuration Service starting on port $CONFIGSERVER_PORT"
+echo "Waiting for Configuration Service starting on port $(getPort $CONFIGSERVER_PORT)"
 echo "********************************************************"
-while ! `nc -z configurationservice $CONFIGSERVER_PORT `; do sleep 3; done
+while ! `nc -z configurationservice $(getPort $CONFIGSERVER_PORT)`; do sleep 3; done
 echo ">>>>>>>>>>>> Configuration Service has started"
 
 echo "********************************************************"
-echo "waiting for Database Server starting on port $DATABASESERVER_PORT"
+echo "waiting for Database Server starting on port $(getPort $DATABASESERVER_PORT)"
 echo "********************************************************"
-while ! `nc -z currencyservice-db $DATABASESERVER_PORT`; do sleep 3; done
+while ! `nc -z currencyservice-db $(getPort $DATABASESERVER_PORT)`; do sleep 3; done
 echo ">>>>>>>>>>>> Database Server has started"
 
 echo "********************************************************"

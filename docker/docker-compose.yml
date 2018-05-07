@@ -2,79 +2,77 @@ version: '2'
 services:
   configurationservice:
     image: 6d68/cryptocloud-confsrv:${BUILD_ID}
-    mem_limit: 536870912
+    mem_limit: 1073741824
     ports:
       - "8888:8888"
     environment:
         DISCOVERYSERVICE_URI: "http://discovery-service:8761/eureka/"
         DISCOVERYSERVICE_PORT: 8761
-    depends_on:
-        - discovery-service
+    links:
+        - "discovery-service:discovery-service"
   currencyservice:
       image: 6d68/cryptocloud-currencysrv:${BUILD_ID}
-      mem_limit: 536870912
+      mem_limit: 1073741824
       ports:
         - "8080:8080"
       environment:
         PROFILE: "default"
         CONFIGSERVER_URI: "http://configurationservice:8888"
-        CONFIGSERVER_PORT: "8888"
-        DATABASESERVER_PORT: "27017"
+        CONFIGSERVER_PORT: 8888
+        DATABASESERVER_PORT: 27017
         DISCOVERYSERVICE_URI: "http://discovery-service:8761/eureka/"
         DISCOVERYSERVICE_PORT: 8761
       links:
-        - currencyservice-db
-      depends_on:
-        - configurationservice
-        - discovery-service
+        - "currencyservice-db:currencyservice-db"
+        - "configurationservice:configurationservice"
+        - "discovery-service:discovery-service"
   ratecollector:
       image: 6d68/cryptocloud-ratescollector:${BUILD_ID}
-      mem_limit: 536870912
+      mem_limit: 1073741824
       ports:
         - "8081:8081"
       environment:
         PROFILE: "default"
         CONFIGSERVER_URI: "http://configurationservice:8888"
-        CONFIGSERVER_PORT: "8888"
+        CONFIGSERVER_PORT: 8888
         DISCOVERYSERVICE_URI: "http://discovery-service:8761/eureka/"
         DISCOVERYSERVICE_PORT: 8761
         CURRENCYSERVICE_URI: "http://currencyservice/"
-        CURRENCYSERVICE_PORT: "8080"
-      depends_on:
-        - discovery-service
-        - currencyservice
+        CURRENCYSERVICE_PORT: 8080
+      links:
+        - "discovery-service:discovery-service"
+        - "currencyservice:currencyservice"
   currencyservice-db:
     image: mongo:latest
-    mem_limit: 536870912
-    container_name: "currencyservice-db"
+    mem_limit: 1073741824
     ports:
       - "27017:27017"
   discovery-service:
     image: 6d68/cryptocloud-discoverysrv:${BUILD_ID}
-    mem_limit: 536870912
+    mem_limit: 1073741824
     ports:
        - "8761:8761"
   api-gateway:
     image: 6d68/cryptocloud-api-gateway:${BUILD_ID}
-    mem_limit: 536870912
+    mem_limit: 1073741824
     ports:
       - "5555:5555"
     links:
-      - "discovery-service"
-      - "configurationservice"
+      - "discovery-service:discovery-service"
+      - "configurationservice:configurationservice"
     environment:
       PROFILE: "default"
-      SERVER_PORT: "5555"
+      SERVER_PORT: 5555
       CONFIGSERVER_URI: "http://configurationservice:8888"
-      CONFIGSERVER_PORT: "8888"
+      CONFIGSERVER_PORT: 8888
       DISCOVERYSERVICE_URI: "http://discovery-service:8761/eureka/"
       DISCOVERYSERVICE_PORT: 8761
   webapp:
     image: 6d68/cryptocloud-app:${BUILD_ID}
-    mem_limit: 536870912
+    mem_limit: 1073741824
     ports:
-      - "8282:8282"
+      - "80:80"
     links:
-      - "api-gateway"
-    environment:
-      APP_API_GATEWAY: "http://api-gateway:5555"
+      - "configurationservice:configurationservice"
+      - "discovery-service:discovery-service"
+      - "api-gateway:api-gateway"
